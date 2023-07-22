@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -11,23 +11,23 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import TurnedInIcon from '@mui/icons-material/TurnedIn';
 
-const Demo = styled('div')(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
-}));
-export default function TodoList(props) {
+function TodoList(props) {
     const { todos, onDeleteTodoItem } = props;
     const onDeleteClick = (itemId) => {
         onDeleteTodoItem(itemId);
     }
     return (
+
         <Grid item xs={12} md={6}>
-            <Demo>
-                <List>
+            {
+                todos.length > 0 &&
+                <List className='todo_list'>
                     {
                         todos.map((item) => {
                             return (
                                 <ListItem
                                     key={item.id}
+                                    className='todo_item'
                                     data-testid="todo-item"
                                     secondaryAction={
                                         <IconButton edge="end" aria-label="delete" onClick={() => onDeleteClick(item.id)}>
@@ -49,7 +49,15 @@ export default function TodoList(props) {
                         })
                     }
                 </List>
-            </Demo>
+            }
         </Grid>
     )
 }
+TodoList.propTypes = {
+    todos: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string
+    })),
+    onDeleteTodoItem: PropTypes.func
+}
+export default TodoList;

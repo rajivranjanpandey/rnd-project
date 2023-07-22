@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './form.css';
 import { Button, TextField } from '@mui/material';
 
-export default function TodoForm(props) {
+function TodoForm(props) {
     const { addTodo } = props;
     const [todoInput, setTodoInput] = React.useState('');
 
@@ -18,7 +19,7 @@ export default function TodoForm(props) {
             label="Your inputs ... "
             className='todo_input'
             value={todoInput}
-            InputProps={{ endAdornment: <Button color='primary' variant='outlined' onClick={onTodoSave}>Save</Button> }}
+            InputProps={{ endAdornment: <Button className='save_button' variant='outlined' onClick={onTodoSave}>Save</Button> }}
             inputProps={{ "data-testid": "todo-input" }}
             onChange={(event) => {
                 setTodoInput(event.target.value);
@@ -26,3 +27,7 @@ export default function TodoForm(props) {
         />
     )
 }
+TodoForm.propTypes = {
+    addTodo: PropTypes.func
+}
+export default TodoForm;

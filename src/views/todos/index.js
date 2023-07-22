@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 import TodoList from '../../containers/todos/list'
 import TodoForm from '../../containers/todos/form'
 
@@ -25,10 +26,10 @@ export default function Todos() {
         }
     }
     return (
-        <>
+        <div className="todo-container">
             <h2>Todos</h2>
             <TodoForm addTodo={addTodo} />
             <TodoList todos={todos} onDeleteTodoItem={onDeleteTodoItem} />
-        </>
+        </div>
     )
 }
