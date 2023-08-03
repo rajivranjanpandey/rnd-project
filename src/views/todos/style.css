@@ -23,6 +23,13 @@
     border: none
 }
 
+.todo-container .save_button:hover {
+    background-color: var(--text-color);
+    color: white;
+    border: none;
+    transform: scale(1.05, 1.05);
+}
+
 .todo-container .todo_list {
     margin-top: 10px;
     background-color: transparent
@@ -31,6 +38,7 @@
 .todo-container .todo_list .todo_item {
     background-color: var(--container-color);
     border-radius: 5px;
+    margin-top: 8px;
 }
 
 .todo-container .todo_list .todo_item button {
